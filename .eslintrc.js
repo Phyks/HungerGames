@@ -45,5 +45,9 @@ module.exports = {
             "ignorePropertyModificationsFor": ["state"]
         }
     ],
+    // enforce consistent line breaks inside function parentheses
+    'function-paren-newline': 0,
+    // Use dangling _
+    'no-underscore-dangle': 0,
   }
-}
+};

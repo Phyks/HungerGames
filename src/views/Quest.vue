@@ -6,16 +6,13 @@
 import QuestMissingCategories from '@/components/QuestMissingCategories/index';
 
 
+// TODO: Changing route should not flash old product
 export default {
     components: {
         QuestMissingCategories,
     },
     created() {
         this.fetchData();
-    },
-    watch: {
-        // Fetch again when the component is updated
-        $route: 'fetchData',
     },
     methods: {
         fetchData() {

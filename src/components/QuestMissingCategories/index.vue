@@ -13,6 +13,7 @@
                     </v-avatar>
                     <v-card>
                         <v-card-text>
+                            <!-- TODO: Preload images -->
                             <img style="width: 100%;" :src="data.icon" />
                         </v-card-text>
                     </v-card>
@@ -20,21 +21,21 @@
             </v-flex>
             <v-flex xs7 class="text-xs-center">
                 <div>
-                    <div class="headline">{{ data.brands }}</div>
-                    <h2 class="title">{{ data.name }}</h2>
+                    <div class="headline">{{ data.brands || 'Unknown' }}</div>
+                    <h2 class="title">{{ data.name || 'Unkown' }}</h2>
                 </div>
             </v-flex>
         </v-layout>
         <v-divider />
         <v-layout row>
             <v-flex xs12>
-                <h2 class="title">Unselect all incorrect categories:</h2>
+                <h2 class="title">Select all correct categories:</h2>
             </v-flex>
         </v-layout>
         <v-layout row wrap>
             <v-btn
                 v-for="(category, key) in data.predictedCategories" :key="key"
-                round primary dark :class="{ green: category.isOK, red: !category.isOK }"
+                round dark :class="{ green: category.isOK, red: !category.isOK }"
                 @click.stop="data.predictedCategories[key].isOK = !data.predictedCategories[key].isOK"
                 >
                 {{ category.name }}
@@ -68,5 +69,9 @@ export default {
 
 .pointable:hover {
     opacity: 0.8;
+}
+
+.icon {
+    border-radius: 0;
 }
 </style>

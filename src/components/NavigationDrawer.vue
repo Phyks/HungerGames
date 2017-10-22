@@ -2,6 +2,7 @@
     <v-navigation-drawer
         persistent
         clipped
+        app
         enable-resize-watcher
         v-model="isActive"
         >
@@ -12,6 +13,14 @@
                 </v-list-tile-action>
                 <v-list-tile-content>
                     <v-list-tile-title>Play!</v-list-tile-title>
+                </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile :to="{ name: 'About' }" exact>
+                <v-list-tile-action>
+                    <v-icon>info</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    <v-list-tile-title>About</v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
         </v-list>
