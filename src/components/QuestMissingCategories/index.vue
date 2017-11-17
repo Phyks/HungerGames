@@ -43,7 +43,7 @@
         </v-layout>
         <v-layout row>
             <v-flex xs12>
-                <v-btn>submit</v-btn>
+                <v-btn @click="handleSubmit()">Submit</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
@@ -53,11 +53,23 @@
 export default {
     props: {
         data: Object,
+        onSubmit: Function,
     },
     data() {
         return {
             dialog: false,
         };
+    },
+    methods: {
+        handleSubmit() {
+            const okCategories = [];
+            Object.keys(this.data.predictedCategories).forEach((key) => {
+                if (this.data.predictedCategories[key].isOk) {
+                    okCategories.push(key);
+                }
+            });
+            this.onSubmit(okCategories);
+        },
     },
 };
 </script>

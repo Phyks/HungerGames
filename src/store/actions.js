@@ -1,3 +1,4 @@
+import { updateCategories } from '../api';
 import * as types from './mutations-types';
 import quests from './quests';
 
@@ -16,5 +17,17 @@ export default {
                 ),
             );
         });
+    },
+
+    validateQuest({ commit }, { type, id, solution }) {
+        if (type === 'missingCategories') {
+            updateCategories(id, solution).then(() => commit(
+                types.VALIDATE_QUEST,
+                {
+                    type,
+                    id,
+                },
+            ));
+        }
     },
 };

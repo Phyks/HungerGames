@@ -11,8 +11,10 @@ function popQuest(state) {
     if (availableQuests.length === 0) {
         return null;
     }
-    const randomQuestsList = pickRandomFromArray(availableQuests);
-    return pickRandomFromArray(state.questsItems[randomQuestsList]);
+    const randomQuestsType = pickRandomFromArray(availableQuests);
+    const randomQuest = pickRandomFromArray(state.questsItems[randomQuestsType]);
+    randomQuest.type = randomQuestsType;
+    return randomQuest;
 }
 
 export default { popQuest };

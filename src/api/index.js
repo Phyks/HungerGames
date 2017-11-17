@@ -59,8 +59,14 @@ function missingCategories() {
 }
 
 
+function updateCategories(productId, categories) {
+    // TODO
+    console.log(productId, categories);
+}
+
+
 function missingBrands() {
-    return fetch(`${BASEURL}state/brands-to-be-completed.json`)
+    return _fetchFromOFFApi(['state/brands-to-be-completed'])
         .then(response => response.json())
         .then(response => response.products.map(product => ({
             id: product.id,
@@ -72,7 +78,7 @@ function missingBrands() {
 
 
 function missingProductName() {
-    return fetch(`${BASEURL}state/product-name-to-be-completed.json`)
+    return _fetchFromOFFApi(['state/product-name-to-be-completed'])
         .then(response => response.json())
         .then(response => response.products.map(product => ({
             id: product.id,
@@ -83,4 +89,4 @@ function missingProductName() {
 }
 
 
-export { missingBrands, missingCategories, missingProductName };
+export { missingBrands, missingCategories, updateCategories, missingProductName };
