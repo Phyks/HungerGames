@@ -1,8 +1,10 @@
-# hungergames
+# HungerGames
 
-> OpenFoodFacts gamification
+Gamification webapp on top of [OpenFoodFacts](http://openfoodfacts.org/) to
+improve quality of the data.
 
-## Build Setup
+
+## Build setup
 
 ``` bash
 # install dependencies
@@ -13,18 +15,13 @@ npm run dev
 
 # build for production with minification
 npm run build
+# Then, serve the built files with a webserver
 
 # build for production and view the bundle analyzer report
 npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## License
+
+The content of this repository is licensed under an MIT license, unless explicitly mentionned otherwise.
