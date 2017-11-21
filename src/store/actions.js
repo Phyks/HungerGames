@@ -4,30 +4,43 @@ import quests from './quests';
 
 export default {
     preloadQuests({ commit }) {
-        commit(types.IS_LOADING_QUESTS);
-
+        const apiRequests = [];
         Object.keys(quests).forEach((quest) => {
-            quests[quest]().then(
-                items => commit(
-                    types.STORE_QUESTS_ITEMS,
-                    {
-                        type: 'missingCategories',
-                        items,
-                    },
+            apiRequests.push(
+                quests[quest]().then(
+                    items => commit(
+                        types.STORE_QUESTS_ITEMS,
+                        {
+                            type: 'missingCategories',
+                            items,
+                        },
+                    ),
                 ),
             );
         });
+
+        return Promise.all(apiRequests);
     },
 
     validateQuest({ commit }, { type, id, solution }) {
         if (type === 'missingCategories') {
             updateCategories(id, solution).then(() => commit(
-                types.VALIDATE_QUEST,
+                types.REMOVE_QUEST_ITEM,
                 {
                     type,
                     id,
                 },
             ));
         }
+    },
+
+    skipQuest({ commit }, { type, id }) {
+        commit(
+            types.REMOVE_QUEST_ITEM,
+            {
+                type,
+                id,
+            },
+        );
     },
 };

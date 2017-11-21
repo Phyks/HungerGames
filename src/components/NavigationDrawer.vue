@@ -1,9 +1,9 @@
 <template>
     <v-navigation-drawer
-        persistent
+        fixed
         clipped
         app
-        enable-resize-watcher
+        disable-resize-watcher
         v-model="isActive"
         >
         <v-list>

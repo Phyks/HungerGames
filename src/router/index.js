@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import About from '@/views/About';
-import Quest from '@/views/Quest';
+
+import About from '@/components/About';
+import Quests from '@/components/Quests';
 
 Vue.use(Router);
 
@@ -10,7 +11,7 @@ export default new Router({
         {
             path: '/',
             name: 'Home',
-            component: Quest,
+            component: Quests,
         },
         {
             path: '/about',

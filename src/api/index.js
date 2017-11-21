@@ -1,15 +1,33 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-export const BASEURL = 'https://world.openfoodfacts.org/';
+export const BASE_URL = 'https://world.openfoodfacts.org';
+export const BASE_FETCH_PARAMS = {
+    /*
+    credentials: 'include',
+    headers: {
+        Authorization: `Basic ${btoa('off:off')}`,
+    },
+    */
+};
+export const USER_ID = '';
+export const PASSWORD = '';
 
 function _fetchFromOFFApi(filters) {
-    let url = BASEURL;
+    let url = BASE_URL;
     filters.forEach((filter) => {
         url += `/${filter}`;
     });
 
-    return fetch(`${url}.json`);
+    return fetch(`${url}.json`, BASE_FETCH_PARAMS);
+}
+
+function _sendToOFFApi(barcode, fields) {
+    let url = `${BASE_URL}/cgi/product_jqmp2.pl?code=${barcode}&user_id=${USER_ID}&password=${PASSWORD}`;
+    Object.keys(fields).forEach((field) => {
+        url += `&${field}=${fields[field]}`;
+    });
+    return fetch(url, BASE_FETCH_PARAMS);
 }
 
 function missingCategories() {
@@ -60,8 +78,9 @@ function missingCategories() {
 
 
 function updateCategories(productId, categories) {
-    // TODO
-    console.log(productId, categories);
+    return _sendToOFFApi(productId, {
+        categories: categories.join(','),
+    });
 }
 
 

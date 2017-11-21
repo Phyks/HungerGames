@@ -1,19 +1,13 @@
 <template>
-    <v-app toolbar>
+    <v-app>
         <NavigationDrawer v-model="isDrawerVisible"/>
         <v-toolbar color="indigo" dark fixed app clipped-left>
             <v-toolbar-side-icon @click.stop="showHideDrawer"></v-toolbar-side-icon>
             <v-toolbar-title>HungerGames</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-                <v-icon>skip_next</v-icon>
-            </v-btn>
         </v-toolbar>
-        <main>
-            <v-content>
-                <router-view></router-view>
-            </v-content>
-        </main>
+        <v-content class="max-width">
+            <router-view></router-view>
+        </v-content>
     </v-app>
 </template>
 
@@ -36,3 +30,11 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.max-width {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
